@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funky Geo Quest Kids - Aprenda Brincando</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --amarelo: #FFD93D;
+      --azul: #4D96FF;
+      --verde: #6BCB77;
+      --rosa: #FF9ECD;
+      --laranja: #FFA94D;
+      --roxo: #C084FC;
+      --branco: #FFFFFF;
+      --cinza: #5A5A5A;
+      --sombra-amarela: 0 8px 0 #E6C200;
+      --sombra-azul: 0 8px 0 #357ABD;
+      --sombra-verde: 0 8px 0 #4DA859;
+      --sombra-rosa: 0 8px 0 #E67BA8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #FFF8E1 0%, #E3F2FD 50%, #F3E5F5 100%);
+      color: var(--cinza);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Fundo com formas geométricas */
+    .bg-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-shapes span {
+      position: absolute;
+      opacity: 0.15;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .bg-shapes .circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--amarelo);
+      top: 10%;
+      left: 5%;
+    }
+
+    .bg-shapes .square {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: var(--azul);
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .bg-shapes .triangle {
+      width: 0;
+      height: 0;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      border-bottom: 100px solid var(--rosa);
+      top: 30%;
+      right: 20%;
+      animation-delay: 4s;
+    }
+
+    .bg-shapes .donut {
+      width: 100px;
+      height: 100px;
+      border: 25px solid var(--verde);
+      border-radius: 50%;
+      bottom: 15%;
+      left: 15%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(15deg); }
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--cinza);
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 4px solid var(--amarelo);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--azul);
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--amarelo);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      box-shadow: var(--sombra-amarela);
+      border: 3px solid #fff;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--cinza);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid transparent;
+    }
+
+    nav a:hover {
+      background: var(--rosa);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--azul);
+      text-shadow: 3px 3px 0px rgba(77, 150, 255, 0.2);
+    }
+
+    .hero-content h1 span {
+      color: var(--laranja);
+      display: inline-block;
+      animation: wiggle 2s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-3deg); }
+      75% { transform: rotate(3deg); }
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:active {
+      transform: translateY(6px);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      background: var(--verde);
+      color: white;
+      box-shadow: 0 8px 0 #4DA859;
+    }
+
+    .btn-primary:hover {
+      background: #5DBF69;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:active {
+      box-shadow: 0 2px 0 #4DA859;
+    }
+
+    .btn-yellow {
+      background: var(--amarelo);
+      color: #333;
+      box-shadow: 0 8px 0 #E6C200;
+    }
+
+    .btn-yellow:hover {
+      background: #FFE066;
+      transform: translateY(-2px);
+    }
+
+    .btn-yellow:active {
+      box-shadow: 0 2px 0 #E6C200;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-blob {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle at 30% 30%, #FFE066, var(--amarelo));
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      animation: blob 8s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px rgba(255, 217, 61, 0.4);
+    }
+
+    @keyframes blob {
+      0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+      25% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+      50% { border-radius: 50% 60% 30% 60% / 50% 70% 30% 60%; }
+      75% { border-radius: 60% 40% 60% 40% / 70% 30% 50% 50%; }
+    }
+
+    .hero-illustration {
+      font-size: 12rem;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Seções */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--roxo);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      font-weight: 600;
+      color: #777;
+    }
+
+    /* Cards de Missões */
+    .missions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .mission-card {
+      background: white;
+      border-radius: 30px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 4px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mission-card:hover {
+      transform: translateY(-10px) rotate(1deg);
+    }
+
+    .mission-card:hover::before {
+      opacity: 1;
+    }
+
+    .mission-card:nth-child(1) { border-color: var(--amarelo); }
+    .mission-card:nth-child(2) { border-color: var(--azul); }
+    .mission-card:nth-child(3) { border-color: var(--verde); }
+    .mission-card:nth-child(4) { border-color: var(--rosa); }
+    .mission-card:nth-child(5) { border-color: var(--laranja); }
+    .mission-card:nth-child(6) { border-color: var(--roxo); }
+
+    .mission-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .mission-card:nth-child(1) .mission-icon { background: #FFF8E1; }
+    .mission-card:nth-child(2) .mission-icon { background: #E3F2FD; }
+    .mission-card:nth-child(3) .mission-icon { background: #E8F5E9; }
+    .mission-card:nth-child(4) .mission-icon { background: #FCE4EC; }
+    .mission-card:nth-child(5) .mission-icon { background: #FFF3E0; }
+    .mission-card:nth-child(6) .mission-icon { background: #F3E5F5; }
+
+    .mission-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .mission-card p {
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+      font-weight: 600;
+      color: #666;
+    }
+
+    .mission-tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: #f0f0f0;
+    }
+
+    .mission-card:nth-child(1) .mission-tag { background: #FFF8E1; color: #F9A825; }
+    .mission-card:nth-child(2) .mission-tag { background: #E3F2FD; color: #1976D2; }
+    .mission-card:nth-child(3) .mission-tag { background: #E8F5E9; color: #388E3C; }
+    .mission-card:nth-child(4) .mission-tag { background: #FCE4EC; color: #C2185B; }
+    .mission-card:nth-child(5) .mission-tag { background: #FFF3E0; color: #E65100; }
+    .mission-card:nth-child(6) .mission-tag { background: #F3E5F5; color: #7B1FA2; }
+
+    /* Quiz */
+    .quiz-section {
+      background: white;
+      border-radius: 40px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border: 5px solid var(--azul);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-section::after {
+      content: '?';
+      position: absolute;
+      font-size: 15rem;
+      font-family: 'Fredoka One', cursive;
+      color: rgba(77, 150, 255, 0.05);
+      top: -20px;
+      right: -20px;
+      transform: rotate(15deg);
+    }
+
+    .quiz-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-header h2 {
+      font-size: 2.5rem;
+      color: var(--azul);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-board {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .score-item {
+      background: #f8f8f8;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .stars {
+      color: var(--amarelo);
+      letter-spacing: 5px;
+    }
+
+    .question-box {
+      background: #f8f9fa;
+      border-radius: 30px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      border: 3px dashed var(--azul);
+    }
+
+    .question-box h3 {
+      font-size: 1.5rem;
+      color: var(--cinza);
+      margin-bottom: 1rem;
+    }
+
+    .question-emoji {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+
+    .answers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .answer-btn {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 1.25rem;
+      border-radius: 20px;
+      border: 3px solid #e0e0e0;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 0 #e0e0e0;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      border-color: var(--azul);
+      transform: translateY(-3px);
+      box-shadow: 0 7px 0 var(--azul);
+    }
+
+    .answer-btn.correct {
+      background: var(--verde);
+      border-color: var(--verde);
+      color: white;
+      box-shadow: var(--sombra-verde);
+      animation: pulse 0.5s ease;
+    }
+
+    .answer-btn.wrong {
+      background: #FF6B6B;
+      border-color: #FF6B6B;
+      color: white;
+      box-shadow: 0 6px 0 #D32F2F;
+      animation: shake 0.5s ease;
+    }
+
+    .answer-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .feedback {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feedback.show {
+      opacity: 1;
+    }
+
+    .feedback.correct {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .feedback.wrong {
+      background: #FFEBEE;
+      color: #C62828;
+    }
+
+    .quiz-controls {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .quiz-result {
+      text-align: center;
+      display: none;
+    }
+
+    .quiz-result.show {
+      display: block;
+      animation: popIn 0.5s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .quiz-result h3 {
+      font-size: 2rem;
+      color: var(--roxo);
+      margin-bottom: 1rem;
+    }
+
+    .quiz-result .trophy {
+      font-size: 6rem;
+      margin-bottom: 1rem;
+      animation: bounce 1s ease-in-out infinite;
+    }
+
+    /* Confetes */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--rosa), var(--laranja));
+      border-radius: 40px 40px 0 0;
+      margin-top: 4rem;
+      padding: 3rem 2rem;
+      color: white;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    footer p {
+      font-weight: 600;
+      opacity: 0.95;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      transform: translateY(-3px);
+      text-decoration: underline;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-blob {
+        width: 300px;
+        height: 300px;
+      }
+
+      .hero-illustration {
+        font-size: 8rem;
+      }
+
+      section {
+        padding: 2rem 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .missions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .answers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-section {
+        padding: 2rem 1.5rem;
+        border-radius: 30px;
+      }
+
+      nav ul {
+        justify-content: center;
+      }
+
+      .header-container {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 0.85rem 1.75rem;
+      }
+
+      .question-emoji {
+        font-size: 3.5rem;
+      }
+    }
+
+    /* Acessibilidade */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--azul);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-shapes" aria-hidden="true">
+    <span class="circle"></span>
+    <span class="square"></span>
+    <span class="triangle"></span>
+    <span class="donut"></span>
+  </div>
+
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo" aria-label="Funky Geo Quest Kids - Página inicial">
+        <span class="logo-icon">🚀</span>
+        <span>Funky Geo Quest</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#missoes">Missões</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <h1>Aprenda <span>brincando</span> todos os dias!</h1>
+        <p>Embarque em missões coloridas, descubra o mundo e conquiste estrelas enquanto se diverte. O conhecimento nunca foi tão divertido!</p>
+        <a href="#missoes" class="btn btn-primary">Começar Aventura 🌟</a>
+      </div>
+      <div class="hero-image">
+        <div class="hero-blob">
+          <span class="hero-illustration">🤓</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="missoes">
+      <h2 class="section-title">Missões de Aprendizado</h2>
+      <p class="section-subtitle">Escolha sua missão favorita e comece a explorar!</p>
+      <div class="missions-grid">
+        <article class="mission-card">
+          <div class="mission-icon">🔢</div>
+          <h3>Matemática Mágica</h3>
+          <p>Números, formas e operações em desafios cheios de magia.</p>
+          <span class="mission-tag">1º ao 5º ano</span>
+        </article>
+        <article class="mission-card">
+          <div class="mission-icon">🔬</div>
+          <h3>Ciências Curiosas</h3>
+          <p>Experimentos, natureza e descobertas sobre o mundo.</p>
+          <span class="mission-tag">2º ao 5º ano</span>
+        </article>
+        <article class="mission-card">
+          <div class="mission-icon">📚</div>
+          <h3>Português Divertido</h3>
+          <p>Leitura, escrita e histórias para soltar a imaginação.</p>
+          <span class="mission-tag">1º ao 5º ano</span>
+        </article>
+        <article class="mission-card">
+          <div class="mission-icon">🏛️</div>
+          <h3>História Hora</h3>
+          <p>Viaje no tempo e conheça heróis e aventuras do passado.</p>
+          <span class="mission-tag">3º ao 5º ano</span>
+        </article>
+        <article class="mission-card">
+          <div class="mission-icon">🌍</div>
+          <h3>Geografia Geo</h3>
+          <p>Explore continentes, países, mapas e culturas pelo mundo.</p>
+          <span class="mission-tag">4º ao 5º ano</span>
+        </article>
+        <article class="mission-card">
+          <div class="mission-icon">🎨</div>
+          <h3>Arte Criativa</h3>
+          <p>Cores, desenhos, música e muita criatividade para expressar.</p>
+          <span class="mission-tag">Todos os anos</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="quiz-section">
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <h2>🎮 Quiz Interativo</h2>
+            <p class="section-subtitle">Responda as perguntas e ganhe estrelas!</p>
+          </div>
+
+          <div class="score-board">
+            <div class="score-item">⭐ Pontos: <span id="score">0</span></div>
+            <div class="score-item">❓ Pergunta: <span id="question-number">1</span>/<span id="total-questions">5</span></div>
+          </div>
+
+          <div id="quiz-content">
+            <div class="question-box">
+              <div class="question-emoji" id="question-emoji">🤔</div>
+              <h3 id="question-text">Carregando pergunta...</h3>
+            </div>
+            <div class="answers-grid" id="answers-grid"></div>
+            <div class="feedback" id="feedback" role="status"></div>
+          </div>
+
+          <div class="quiz-result" id="quiz-result">
+            <div class="trophy">🏆</div>
+            <h3 id="result-title">Parabéns!</h3>
+            <p id="result-message">Você completou o quiz!</p>
+            <div class="stars" id="result-stars"></div>
+            <div class="quiz-controls">
+              <button class="btn btn-yellow" onclick="restartQuiz()">Jogar Novamente 🔄</button>
+            </div>
+          </div>
+
+          <div class="quiz-controls">
+            <button id="next-btn" class="btn btn-primary" style="display: none;" onclick="nextQuestion()">Próxima Pergunta ➡️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="sobre">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span>🚀</span>
+        <span>Funky Geo Quest</span>
+      </div>
+      <p>Aprendizado lúdico, colorido e cheio de aventuras para crianças.</p>
+      <p>Feito com 💛 para pequenos exploradores do conhecimento.</p>
+      <div class="footer-links">
+        <a href="#inicio">Início</a>
+        <a href="#missoes">Missões</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#">Contato</a>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">© 2024 Funky Geo Quest Kids. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        emoji: '🍎',
+        text: 'Se você tem 3 maçãs e ganha 2 mais, quantas maçãs você tem agora?',
+        answers: ['4', '5', '6', '3'],
+        correct: 1,
+        feedbackCorrect: 'Isso aí! 3 + 2 = 5! 🎉',
+        feedbackWrong: 'Quase! Tente contar nos dedinhos. 🤔'
+      },
+      {
+        emoji: '🌍',
+        text: 'Qual é o planeta em que vivemos?',
+        answers: ['Marte', 'Júpiter', 'Terra', 'Vênus'],
+        correct: 2,
+        feedbackCorrect: 'Muito bem! A Terra é nosso lar azul! 🌎',
+        feedbackWrong: 'Ops! Olhe para o céu azul e tente de novo. 🌤️'
+      },
+      {
+        emoji: '🌈',
+        text: 'Quantas cores tem o arco-íris?',
+        answers: ['5', '6', '7', '8'],
+        correct: 2,
+        feedbackCorrect: 'Incrível! O arco-íris tem 7 cores! 🌈',
+        feedbackWrong: 'Não foi dessa vez! As cores são 7: V. A. G. V. A. I. V. 🎨'
+      },
+      {
+        emoji: '🐘',
+        text: 'Qual é o maior animal terrestre?',
+        answers: ['Girafa', 'Elefante Africano', 'Rinoceronte', 'Hipopótamo'],
+        correct: 1,
+        feedbackCorrect: 'Isso mesmo! O elefante africano é gigante! 🐘',
+        feedbackWrong: 'Pense em um animal bem grande com tromba! 🦣'
+      },
+      {
+        emoji: '✏️',
+        text: 'Qual letra começa a palavra BOLA?',
+        answers: ['A', 'B', 'C', 'D'],
+        correct: 1,
+        feedbackCorrect: 'Parabéns! A palavra BOLA começa com B! ⚽',
+        feedbackWrong: 'Dica: é a segunda letra do alfabeto! 🔤'
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    function loadQuestion() {
+      answered = false;
+      const q = questions[currentQuestion];
+      document.getElementById('question-emoji').textContent = q.emoji;
+      document.getElementById('question-text').textContent = q.text;
+      document.getElementById('question-number').textContent = currentQuestion + 1;
+      document.getElementById('total-questions').textContent = questions.length;
+      document.getElementById('feedback').className = 'feedback';
+      document.getElementById('feedback').textContent = '';
+      document.getElementById('next-btn').style.display = 'none';
+
+      const grid = document.getElementById('answers-grid');
+      grid.innerHTML = '';
+
+      q.answers.forEach((answer, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'answer-btn';
+        btn.textContent = answer;
+        btn.setAttribute('aria-label', `Resposta: ${answer}`);
+        btn.onclick = () => checkAnswer(index, btn);
+        grid.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selectedIndex, btnElement) {
+      if (answered) return;
+      answered = true;
+
+      const q = questions[currentQuestion];
+      const feedback = document.getElementById('feedback');
+      const allButtons = document.querySelectorAll('.answer-btn');
+      allButtons.forEach(b => b.disabled = true);
+
+      if (selectedIndex === q.correct) {
+        btnElement.classList.add('correct');
+        feedback.className = 'feedback correct show';
+        feedback.textContent = q.feedbackCorrect;
+        score += 10;
+        document.getElementById('score').textContent = score;
+        fireConfetti();
+      } else {
+        btnElement.classList.add('wrong');
+        allButtons[q.correct].classList.add('correct');
+        feedback.className = 'feedback wrong show';
+        feedback.textContent = q.feedbackWrong;
+      }
+
+      if (currentQuestion < questions.length - 1) {
+        document.getElementById('next-btn').style.display = 'inline-block';
+      } else {
+        document.getElementById('next-btn').textContent = 'Ver Resultado 🏆';
+        document.getElementById('next-btn').style.display = 'inline-block';
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById('quiz-content').style.display = 'none';
+      document.getElementById('next-btn').style.display = 'none';
+      const result = document.getElementById('quiz-result');
+      result.classList.add('show');
+
+      const maxScore = questions.length * 10;
+      const stars = Math.round((score / maxScore) * 5);
+      const starsText = '⭐'.repeat(stars) || '⭐';
+      document.getElementById('result-stars').textContent = starsText;
+
+      if (score >= maxScore * 0.8) {
+        document.getElementById('result-title').textContent = 'Você é um Gênio! 🎓';
+        document.getElementById('result-message').textContent = `Você fez ${score} pontos de ${maxScore} possíveis! Incrível!`;
+        fireConfetti(150);
+      } else if (score >= maxScore * 0.5) {
+        document.getElementById('result-title').textContent = 'Muito bem! 🌟';
+        document.getElementById('result-message').textContent = `Você fez ${score} pontos de ${maxScore} possíveis! Continue praticando!`;
+        fireConfetti(80);
+      } else {
+        document.getElementById('result-title').textContent = 'Boa tentativa! 💪';
+        document.getElementById('result-message').textContent = `Você fez ${score} pontos de ${maxScore} possíveis. Tente de novo!`;
+      }
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      document.getElementById('score').textContent = score;
+      document.getElementById('quiz-content').style.display = 'block';
+      document.getElementById('quiz-result').classList.remove('show');
+      document.getElementById('next-btn').textContent = 'Próxima Pergunta ➡️';
+      loadQuestion();
+    }
+
+    // Confetes
+    function fireConfetti(count = 50) {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#FFD93D', '#4D96FF', '#6BCB77', '#FF9ECD', '#FFA94D', '#C084FC'];
+      const particles = [];
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          vx: (Math.random() - 0.5) * 20,
+          vy: (Math.random() - 0.5) * 20 - 5,
+          size: Math.random() * 10 + 5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 10,
+          life: 1
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+
+        particles.forEach(p => {
+          if (p.life > 0) {
+            active = true;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.4;
+            p.life -= 0.02;
+            p.rotation += p.rotationSpeed;
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.life;
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+            ctx.restore();
+          }
+        });
+
+        if (active) {
+          requestAnimationFrame(animate);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      animate();
+    }
+
+    // Redimensionar canvas
+    window.addEventListener('resize', () => {
+      const canvas = document.getElementById('confetti-canvas');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Rolagem suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Iniciar quiz
+    loadQuestion();
+  </script>
+</body>
+</html>
